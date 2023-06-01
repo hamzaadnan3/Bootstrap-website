@@ -1,0 +1,13 @@
+main{
+    width: 80%;
+    margin: auto;
+}
+.heightadj img{
+    height: 300px;
+}
+.heightadj{
+    margin-bottom: 30px;
+}
+.ftr{
+    width: 100%;
+}
