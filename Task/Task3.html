@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Autocomplete Form</title>
+    <style>
+        input {
+            margin-top: 2%;
+
+        }
+
+        h1 {
+            margin: auto;
+            width: 25%;
+
+        }
+
+        form {
+            width: 75%;
+            margin: auto;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Autocomplete Form</h1>
+
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" autocomplete="name" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="tel" autocomplete="tel" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" autocomplete="address" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+       
+        if (window.navigator.userAgent.includes("Chrome")) {
+          
+            document.getElementById('name').setAttribute('autocomplete', 'chrome-name');
+            document.getElementById('tel').setAttribute('autocomplete', 'chrome-tel');
+            document.getElementById('address').setAttribute('autocomplete', 'chrome-address');
+        } else {
+            
+            document.getElementById('name').setAttribute('autocomplete', 'off');
+            document.getElementById('tel').setAttribute('autocomplete', 'off');
+            document.getElementById('address').setAttribute('autocomplete', 'off');
+        }
+    </script>
+</body>
+
+</html>

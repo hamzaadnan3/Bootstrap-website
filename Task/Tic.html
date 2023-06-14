@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tic Tac Toe</title>
+    <style>
+        .bofy {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* height: 100vh; */
+            width: 50%;
+            margin: auto;
+        }
+
+        #board {
+            width: 300px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 5px;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 20px;
+
+
+        }
+
+        h1 {
+            width: 25%;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div id="board" class="bofy">
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <button onclick="resetBoard()">Reset</button>
+    </div>
+    <script>
+        let currentPlayer = 'X';
+
+        function makeMove(cell) {
+            if (!cell.textContent) {
+                cell.textContent = currentPlayer;
+
+                if (checkWin()) {
+                    alert(currentPlayer + ' wins!');
+                    resetBoard();
+                } else if (checkDraw()) {
+                    alert('It\'s a draw!');
+                    resetBoard();
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                }
+            }
+        }
+
+        function checkWin() {
+            const winningCombinations = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+
+            for (let combination of winningCombinations) {
+                const [a, b, c] = combination;
+                const cells = document.getElementsByClassName('cell');
+                if (cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[b].textContent === cells[c].textContent) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function checkDraw() {
+            const cells = document.getElementsByClassName('cell');
+            for (let cell of cells) {
+                if (!cell.textContent) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function resetBoard() {
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            const cells = document.getElementsByClassName('cell');
+            for (let cell of cells) {
+                cell.textContent = '';
+            }
+        }
+
+    </script>
+</body>
+
+</html>
